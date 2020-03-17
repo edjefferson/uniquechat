@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   root :to => "chats#index"
 
   get 'chats/new_message', to: 'chats#new_message'
+  get 'chats/check_message', to: 'chats#check_message'
+
 
 end

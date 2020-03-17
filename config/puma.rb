@@ -36,3 +36,5 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
+
+User.where.not(current_conversation_id: nil).update(current_conversation_id: nil)
