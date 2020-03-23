@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_17_102201) do
+ActiveRecord::Schema.define(version: 2020_03_23_145137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,11 @@ ActiveRecord::Schema.define(version: 2020_03_17_102201) do
     t.integer "user_2_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "conversations_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "conversation_id", null: false
   end
 
   create_table "messages", force: :cascade do |t|
@@ -38,6 +43,14 @@ ActiveRecord::Schema.define(version: 2020_03_17_102201) do
     t.boolean "active"
     t.integer "current_conversation_id"
     t.datetime "last_appeared"
+    t.integer "instances", default: 0
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end
