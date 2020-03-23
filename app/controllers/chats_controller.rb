@@ -32,10 +32,10 @@ class ChatsController < ApplicationController
     end
 
     def disconnect_from_current_user
-      conv = current_user.current_conversation
+      conv = User.find(id: current_user.id).current_conversation
       if conv
         second_user = conv.users.where.not(id: current_user.id)[0]
-        conv.users.update(current_conversation_id: conv.id)
+        conv.users.update(current_conversation_id: nil)
         UserChannel.broadcast_to(second_user, body: "disconnect_from_user")
       end
     end
