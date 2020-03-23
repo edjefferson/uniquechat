@@ -13,11 +13,17 @@
   </head>
 
   <body>
+
+  <div id="chat-container">
+<h1>CHATS</h1>
+
     <%= yield %>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
+    <% if current_user %>
     <%= link_to "Sign out", destroy_user_session_path,:method => 'delete' %>
+    <% end %>
+  </div>
   </body>
 </html>
