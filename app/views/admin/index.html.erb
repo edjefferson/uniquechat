@@ -1,0 +1,17 @@
+<table>
+  <tr>
+    <th>id</th>
+    <th>Instances</th>
+    <th>Last seen?</th>
+    <th>Currently speaking to</th>
+  </tr>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= user.instances%></td>
+      <td><%= user.last_appeared %></td>
+      <td><%= user.current_conversation.users.where.not(id: user.id)[0].id if user.current_conversation %></td>
+    </tr>
+  <% end %>
+</table>
